@@ -1,0 +1,79 @@
+<div class="container">
+	<div class="row">
+
+	    <div class="col-md-3" >
+
+		</div>
+
+		<div class="col-md-8 offset-md-1" >
+			<h1>Book detail6</h1>
+			<table class="table table-striped">
+				<tr>
+					<td><%= attachment_image_tag @books.user, :profile_image,:fill, 50, 50, fallback: "no_image.jpg"%></td>
+					<td><%= @books.title %></td>
+					<td class="title"></td>
+					<td class="opinion"><%= @books.body %></td>
+
+					<% if  @books.user_id == current_user.id %>
+					<td><%= link_to "Edit", edit_book_path(@books.id) %></td>
+					<td><%= link_to "Destroy", book_path(@books.id), method: :delete, "data-confirm" => "Are you sure？" %></td>
+					<% end %>
+
+					</tr>
+			    <td>
+			    	<%= link_to user_path(@books.user_id) do %>
+			     			<%= @books.user.name %>
+			    </td>
+			  	<% end %>
+
+
+
+
+			  	<h1>User info</h1>
+               <%= attachment_image_tag @user, :profile_image %>
+
+
+  <div>
+    name <%= @books.user.name %>
+  </div>
+
+  <div>
+    introduction <%= @books.user.introduction%>
+  </div>
+
+      <!--<% if current_user.id == @books.user.id %>-->
+      <!--  <%= link_to edit_user_path(current_user.id) do %>-->
+      <!--  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>-->
+      <!--  <% end %>-->
+      <!--<% else %>-->
+
+
+      <!--          <%= link_to user_path(current_user.id) do %>-->
+      <!--  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>-->
+      <!--  <% end %>-->
+      <!--<% end %>-->
+
+      <%= link_to '',edit_user_path(@books.user.id),class:"btn btn-outline-secondary btn-block fas fa-user-cog edit_user_10317" %>
+
+
+
+
+			     		<h1>New book</h1>
+
+
+
+                     <%= form_with model: @book, url:'/books', local:true do |f| %>
+                     <h4>Titlle</h4>
+                      <%= f.text_field :title %>
+                     <h4>Opinion</h4>
+                      <%= f.text_area :body %>
+                     <%= f.submit 'Create Book' %>
+                    <% end %>
+
+		    </table>
+	    </div>
+
+    </div>
+</div>
+
+
